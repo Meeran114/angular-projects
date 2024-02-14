@@ -1,0 +1,49 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+</div>
+<div style = "text-align:center"> 
+  <span appChangetext >Welcome to {{title}}.</span> 
+</div>
+<nav>
+  <a routerLink="home">Home</a>
+<a routerLink="contactus">Contactus</a>
+</nav>
+<h3>User Names</h3>
+<ul>
+  <li *ngFor="let item of personaldata">{{item.name}}</li>
+</ul>
+<!-- <p>{{todaydate}}</p> -->
+<label for="">Months : </label>
+<select name="months" (change)="monthchange($event)">
+  <option *ngFor="let u of months">
+    {{u}}
+  </option>
+</select>
+<p *ngIf="isavailable; then condition1 else condition2"></p>  
+  <ng-template #condition1><p>Is available for selection</p></ng-template>
+  <ng-template #condition2><p>Isn't Available</p></ng-template>
+<button (click)="clickme($event)">Click me</button>
+
+<p>Sqrt of 36 is {{ 36 | sqrt }}</p>
+<p>Sqrt of 144 is {{ 144 | sqrt }}</p>
+
+<div> 
+  <form [formGroup] = "formdata" (ngSubmit) = "onClickSubmit(formdata.value)" > 
+     <input type = "email" class = "fortextbox" name = "email" placeholder = "emailid" 
+        formControlName = "email"> 
+     <br/> 
+     
+     <input type = "password" class = "fortextbox" name = "passwd" 
+        placeholder = "password" formControlName = "passwd"> 
+     <br/>
+     
+     <input type = "submit" [disabled]="!formdata.valid" value = "Log In"> 
+  </form>
+</div> 
+<p> Email entered is : {{emailid}} </p>
+
+<router-outlet></router-outlet>
