@@ -1,0 +1,28 @@
+<div style="margin:4px">
+  <button type="button" (click)="setForm()">Set Form</button>
+</div>
+<form [formGroup]="mineform">
+  <ng-container formArrayName="details">
+    <ng-container *ngFor="let item of details.controls; let k=index" [formGroupName]="k">
+      <h3>Table {{k+1}}</h3>
+      <table style="margin: 4px 0px;" rules="all" border="1" cellpadding="10px">
+        <tr>
+        <th *ngFor="let i of mineralName;let a=index">
+          {{mineralName[a]}}({{mineralUnit[a]}})
+        </th>
+        </tr>
+        <ng-container formArrayName="schemes">
+          <ng-container *ngFor="let item1 of getSchemes(k).controls;let i=index;" [formGroupName]="i">
+            <tr>
+              <ng-container formArrayName="quantities">
+                <ng-container *ngFor="let item2 of getQuants(k,i).controls;let j=index">
+                  <td>{{item2.value.quantity}}</td>
+                </ng-container>
+              </ng-container>
+            </tr>
+          </ng-container>
+        </ng-container>
+      </table>
+    </ng-container>
+  </ng-container>
+</form>
